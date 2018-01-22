@@ -13,7 +13,7 @@ router.post('/upvote', (req, res) => {
 })
 
 router.get('/', (req, res) => {
-  fetchQuests(req.body.questID, res)
+  fetchQuests(req.body.skip,req.body.limit, res)
 })
 
 router.get('/:questID', (req, res) => {

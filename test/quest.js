@@ -98,4 +98,26 @@ describe('Quests', () => {
       })
     })
   })
+  describe('/Fetch quests', () => {
+    it('should send quests', (done) => {
+      let skip = 0
+      let limit = 50
+      chai.request(api).get('/quests/').send({skip: skip, limit: limit}).end((err, res) => {
+        expect(res).to.have.status(200)
+        done()
+      })
+    })
+    it('should send single quest', (done) => {
+      chai.request(api).get('/quests/5a65e0099b41303dd463da83').end((err, res) => {
+        expect(res).to.have.status(200)
+        done()
+      })
+    })
+    it('should send quest not found', (done) => {
+      chai.request(api).get('/quests/wrongquestid').end((err, res) => {
+        expect(res).to.have.status(404)
+        done()
+      })
+    })
+  })
 });

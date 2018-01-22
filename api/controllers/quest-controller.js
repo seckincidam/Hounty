@@ -36,7 +36,6 @@ export function createQuest(questInfo, res, err) {
           } else {
             rarity = ''
           }
-          console.log(rarity);
           const newQuest = new Quest({
             text: text,
             ownerID: user._id,
@@ -86,6 +85,24 @@ export function upvoteQuest(questID, token, res, err){
           })
         }
       })
+    }
+  })
+}
+
+export function fetchQuests(skip, limit, res, err){
+  Quest.find({}).skip(skip).limit(limit).exec((err, quests) => {
+    if(err){ res.status(400).send('Can not fetch quests'); return err}
+    res.status(200).send(quests)
+  })
+}
+
+export function fetchSingleQuest(questID, res, err){
+  Quest.findById(questID, (err, quest) => {
+    if(err){ res.status(400).send('Can not fetch quests'); return err}
+    if(!quest){
+      res.status(404).send('Quest not found.')
+    } else {
+      res.status(200).send(quest)
     }
   })
 }
