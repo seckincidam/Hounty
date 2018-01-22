@@ -2,6 +2,12 @@ import React, {Component} from 'react'
 import {NavLink} from 'react-router-dom'
 
 class Navbar extends Component {
+
+  componentWillMount(){
+    const token = localStorage.getItem('token')
+    this.props.authUser(token)
+  }
+
   render() {
     return (
       <div>
