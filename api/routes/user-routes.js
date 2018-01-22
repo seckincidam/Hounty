@@ -18,7 +18,7 @@ router.post('/auth', (req, res) => {
 })
 
 router.get('/:userID', (req, res) => {
-  res.send(req.params.userId)
+  res.send(req.params.userID)
 })
 
 export default router

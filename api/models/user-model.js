@@ -14,7 +14,8 @@ const UserSchema = mongoose.Schema({
   createdAt: Date,
   lastLogin: Date,
   points: Number,
-  role: String
+  role: String,
+  chanceMultiplier: Number
 });
 
 export const User = mongoose.model('User', UserSchema);
